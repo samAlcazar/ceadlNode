@@ -29,17 +29,6 @@ export const createSubscriber = async (req, res, next) => {
   }
 }
 
-export const updateSubscriber = async (req, res, next) => {
-  try {
-    const { id } = req.params
-    const payload = req.body
-    const updatedSubscriber = await subscriberService.updateSubscriber(id, payload)
-    res.json(updatedSubscriber)
-  } catch (error) {
-    next(error)
-  }
-}
-
 export const deleteSubscriber = async (req, res, next) => {
   try {
     const { id } = req.params

@@ -14,18 +14,3 @@ export const validateSubscriber = (payload) => {
 
   return result.data
 }
-
-const updateSubscriberSchema = z.object({
-  email: z.string().email().max(255).optional(),
-  name: z.string().max(100).optional()
-})
-
-export const validateSubscriberUpdate = (payload) => {
-  const result = updateSubscriberSchema.safeParse(payload)
-
-  if (!result.success) {
-    throw new Error(result.error.issues[0].message)
-  }
-
-  return result.data
-}

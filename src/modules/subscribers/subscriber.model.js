@@ -32,25 +32,6 @@ export const createSubscriber = async (payload) => {
   }
 }
 
-export const updateSubscriber = async (id, payload) => {
-  const { email, name } = payload
-
-  try {
-    const { rows } = await pool.query(
-      `UPDATE subscribers
-       SET email = COALESCE($1, email),
-           name = COALESCE($2, name)
-       WHERE id_subscriber = $3
-       RETURNING id_subscriber, email, name, created_at`,
-      [email, name, id]
-    )
-    return rows[0]
-  } catch (error) {
-    console.error(`Error updating subscriber with id ${id}:`, error)
-    throw new Error('Could not update subscriber')
-  }
-}
-
 export const deleteSubscriber = async (id) => {
   try {
     await pool.query('DELETE FROM subscribers WHERE id_subscriber = $1', [id])

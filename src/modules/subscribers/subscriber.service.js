@@ -1,5 +1,5 @@
 import * as subscriberModel from './subscriber.model.js'
-import { validateSubscriber, validateSubscriberUpdate } from './subscriber.validator.js'
+import { validateSubscriber } from './subscriber.validator.js'
 
 export const getAllSubscribers = async () => {
   try {
@@ -26,16 +26,6 @@ export const createSubscriber = async (payload) => {
   } catch (error) {
     console.error('Error creating subscriber:', error)
     throw new Error('Could not create subscriber')
-  }
-}
-
-export const updateSubscriber = async (id, payload) => {
-  try {
-    const validatedPayload = validateSubscriberUpdate(payload)
-    return await subscriberModel.updateSubscriber(id, validatedPayload)
-  } catch (error) {
-    console.error(`Error updating subscriber with id ${id}:`, error)
-    throw new Error('Could not update subscriber')
   }
 }
 

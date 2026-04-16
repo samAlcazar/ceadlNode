@@ -19,12 +19,8 @@ export const validateComment = (payload) => {
 }
 
 const updateCommentSchema = z.object({
-  name: z.string().min(1).max(100).optional(),
-  email: z.string().email().max(100).optional(),
-  content: z.string().min(1).optional(),
-  idPost: z.string().uuid().optional(),
-  isApproved: z.boolean().optional()
-})
+  isApproved: z.boolean()
+}).strict()
 
 export const validateCommentUpdate = (payload) => {
   const result = updateCommentSchema.safeParse(payload)
